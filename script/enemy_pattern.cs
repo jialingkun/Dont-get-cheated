@@ -24,6 +24,7 @@ public class enemy_pattern : MonoBehaviour {
 	private bool isTransition;
 	private Session transitionSession;
 	private bool isGameover;
+	private Pattern emptyPattern;
 
 	//direct retrieve external object
 	private player_Status player;
@@ -50,6 +51,14 @@ public class enemy_pattern : MonoBehaviour {
 	public class Pattern{
 		public Session[] session;
 
+		//for empty pattern only
+		public Pattern(bool isEmpty, int duration){
+			if(isEmpty){
+				session = new Session[1];
+				session[0]=new Session (cheatState.NO_CHEAT,duration);
+			}
+		}
+
 	}
 
 	[System.Serializable]
@@ -73,6 +82,7 @@ public class enemy_pattern : MonoBehaviour {
 		cheaterRightStatus = cheaterRight.GetComponent<cheater_status> ();
 
 		transitionSession = new Session (cheatState.NO_CHEAT,1);
+		emptyPattern = new Pattern (true, 2);
 
 		nextPattern ();
 
@@ -176,6 +186,16 @@ public class enemy_pattern : MonoBehaviour {
 		isGameover = true;
 	}
 
+	public void restart(){
+		isGameover = false;
+		currentPattern = emptyPattern;
+		currentSessionMaxIndex = currentPattern.session.Length-1;
+		currentSessionIndex = 0;
+		currentSession = currentPattern.session [currentSessionIndex];
+		countdown = currentSession.duration;
+		isTransition = false;
+		activeSession ();
+	}
 
 
 }

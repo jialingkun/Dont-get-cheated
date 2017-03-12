@@ -87,4 +87,15 @@ public class player_Status : MonoBehaviour {
 	public void stop(){
 		isGameover = true;
 	}
+
+	public void restart(){
+		isGameover = false;
+		leftActive = false;
+		rightActive = false;
+		progress = 0;
+		score = 0;
+		scoreText.text = "" + score;
+		timestamp = 0;
+		progressBar.localScale = vectorDefaultProgressScale;
+	}
 }

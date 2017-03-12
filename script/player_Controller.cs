@@ -38,4 +38,8 @@ public class player_Controller : MonoBehaviour {
 	public void stop(){
 		isGameover = true;
 	}
+
+	public void restart(){
+		isGameover = false;
+	}
 }

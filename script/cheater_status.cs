@@ -80,4 +80,12 @@ public class cheater_status : MonoBehaviour {
 	public void stop(){
 		isGameover = true;
 	}
+
+	public void restart(){
+		isGameover = false;
+		active = false;
+		progress = 0;
+		timestamp = 0;
+		progressBar.localScale = vectorDefaultProgressScale;
+	}
 }
